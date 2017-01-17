@@ -1,4 +1,6 @@
 % ReadTxtFilesKinect.m
+%  read in the .bin and .txt files from Protonect.cpp and 
+%   BinaryConversion.cpp, then convert those to .mat format
 
 depthFiles = dir('DepthData_*.bin');
 numDepthFiles = length(depthFiles);
