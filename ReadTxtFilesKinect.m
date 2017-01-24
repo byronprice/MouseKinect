@@ -1,6 +1,4 @@
 % ReadTxtFilesKinect.m
-%  read in the .bin and .txt files from Protonect.cpp and 
-%   BinaryConversion.cpp, then convert those to .mat format
 
 depthFiles = dir('DepthData_*.bin');
 numDepthFiles = length(depthFiles);
@@ -19,8 +17,8 @@ for ii=1:numDepthFiles
 end
 allDepthNums = sort(allDepthNums);
 
-allrgbNums = zeros(numDepthFiles,1);
-for ii=1:numDepthFiles
+allrgbNums = zeros(numrgbFiles,1);
+for ii=1:numrgbFiles
     lowIndex = regexp(rgbFiles(ii).name,'_');
     highIndex = regexp(rgbFiles(ii).name,'.bin');
     allrgbNums(ii) = str2double(rgbFiles(ii).name(lowIndex+1:highIndex-1));
@@ -67,17 +65,17 @@ for jj=1:numIter
         globalCount = globalCount+1;
     end
     
-    figure();
-    for ii=1:fileIters
-        subplot(1,2,1);
-        imagesc(depthVideo(:,:,ii)');caxis([50 80]);colormap('hsv');
-        subplot(1,2,2);
-        imagesc(rgbVideo(:,:,ii)');colormap('bone');
-        pause(1/20);
-    end
+%     figure();
+%     for ii=1:fileIters
+%         subplot(1,2,1);
+%         imagesc(depthVideo(:,:,ii)');caxis([590 680]);colormap('hsv');
+%         subplot(1,2,2);
+%         imagesc(rgbVideo(:,:,ii)');colormap('bone');
+%         pause(1/20);
+%     end
     
     
-    fileName = sprintf('mouse45180-%d_%d.mat',jj,Date);
+    fileName = sprintf('mouse45140-%d_%d.mat',jj,Date);
     save(fileName,'depthVideo','rgbVideo','rgbFrames','depthFrames');
 end
 
